@@ -14,6 +14,7 @@ ApplicationWindow {
         }
     }
 
+    // --- HEADER ---
     Rectangle {
         id: header
         height: 60
@@ -22,14 +23,21 @@ ApplicationWindow {
         anchors.right: parent.right
         color: "#303f9f"
 
-        Text {
-            text: "Panel Header"
+        TestButton {
+            id: btnHeader
+            text: "Click Me!"
+            bgColor: "#1976d2"
+            bgPressed: "#1565c0"
             anchors.centerIn: parent
-            color: "white"
-            font.pixelSize: 20
+
+            onClicked: {
+                console.log("ButtonAli Clicked from HEADER!")
+                backend.doSomethingFromQml("سلام علی!");
+            }
         }
     }
 
+    // --- SIDE PANEL (خالی ولی نگهش می‌داریم برای ساختار)
     Rectangle {
         id: sidePanel
         width: 120
@@ -37,14 +45,9 @@ ApplicationWindow {
         anchors.top: header.bottom
         anchors.bottom: parent.bottom
         color: "#455a64"
-
-        Text {
-            text: "Menu"
-            anchors.centerIn: parent
-            color: "white"
-        }
     }
 
+    // --- MAIN AREA ---
     Rectangle {
         id: mainArea
         anchors.top: header.bottom
@@ -53,21 +56,33 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         color: "#eceff1"
 
-        Text {
-            text: "Main Content"
-            anchors.centerIn: parent
-            font.pixelSize: 24
-        }
+        // ***** LIST VIEW اضافه شد *****
+        ListView {
+            id: listView
+            anchors.fill: parent
+            anchors.margins: 8
 
-        TestButton {
-            id: btn1
-            anchors.centerIn: parent
-            text: "Click Me!"
-            bgColor: "#1976d2"
-            bgPressed: "#1565c0"
-            onClicked: {
-                console.log("ButtonAli Clicked!")
-                backend.doSomethingFromQml("سلام علی!");
+            model: ListModel {
+                id: myModel
+                ListElement { title: "Item 1"; value: 10 }
+                ListElement { title: "Item 2"; value: 20 }
+                ListElement { title: "Item 3"; value: 30 }
+            }
+
+            delegate: Rectangle {
+                width: listView.width
+                height: 40
+                color: index % 2 === 0 ? "#f0f0f0" : "#e0e0e0"
+
+                Row {
+                    spacing: 10
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+
+                    Text { text: title; font.pixelSize: 16 }
+                    Text { text: value; font.pixelSize: 16; color: "#666" }
+                }
             }
         }
     }
