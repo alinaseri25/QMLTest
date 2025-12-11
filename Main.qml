@@ -7,6 +7,13 @@ ApplicationWindow {
     visible: true
     title: "Anchors Demo"
 
+    Connections {
+        target: backend
+        function onValueChanged(newValue) {
+            console.log("Signal from C++ newValue =", newValue)
+        }
+    }
+
     Rectangle {
         id: header
         height: 60
@@ -60,6 +67,7 @@ ApplicationWindow {
             bgPressed: "#1565c0"
             onClicked: {
                 console.log("ButtonAli Clicked!")
+                backend.doSomethingFromQml("سلام علی!");
             }
         }
     }
