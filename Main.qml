@@ -2,33 +2,54 @@ import QtQuick
 import QtQuick.Controls
 
 ApplicationWindow {
-    width: 640
-    height: 480
+    width: 500
+    height: 350
     visible: true
-    title: qsTr("TESTING NEW QML")
-
-    property color colorState: "#ffa500"
+    title: "Anchors Demo"
 
     Rectangle {
-        id: box
-        width: 200
-        height: 200
-        color: colorState
-        anchors.centerIn: parent
+        id: header
+        height: 60
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        color: "#303f9f"
 
         Text {
+            text: "Panel Header"
             anchors.centerIn: parent
-            text: "Hello Ali!"
-            font.pixelSize: 24
+            color: "white"
+            font.pixelSize: 20
         }
+    }
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                console.log(colorState)
-                colorState = (colorState == "#ffa500") ? "#87ceeb" : "#ffa500"
-                box.color = colorState
-            }
+    Rectangle {
+        id: sidePanel
+        width: 120
+        anchors.left: parent.left
+        anchors.top: header.bottom
+        anchors.bottom: parent.bottom
+        color: "#455a64"
+
+        Text {
+            text: "Menu"
+            anchors.centerIn: parent
+            color: "white"
+        }
+    }
+
+    Rectangle {
+        id: mainArea
+        anchors.top: header.bottom
+        anchors.left: sidePanel.right
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        color: "#eceff1"
+
+        Text {
+            text: "Main Content"
+            anchors.centerIn: parent
+            font.pixelSize: 24
         }
     }
 }
