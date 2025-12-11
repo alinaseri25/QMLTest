@@ -37,14 +37,45 @@ ApplicationWindow {
         }
     }
 
-    // --- SIDE PANEL (خالی ولی نگهش می‌داریم برای ساختار)
+    // --- SIDE PANEL ---
     Rectangle {
         id: sidePanel
-        width: 120
+        width: 150
         anchors.left: parent.left
         anchors.top: header.bottom
         anchors.bottom: parent.bottom
         color: "#455a64"
+
+        Column {
+            anchors.centerIn: parent
+            spacing: 12
+
+            TestButton {
+                width: 120
+                text: "Add Item"
+                onClicked: {
+                    myModel.append({ "title": "New Item", "value": Math.random() * 100 })
+                }
+            }
+
+            TestButton {
+                width: 120
+                text: "Remove First"
+                onClicked: {
+                    if (myModel.count > 0)
+                        myModel.remove(0)
+                }
+            }
+
+            TestButton {
+                width: 120
+                text: "Edit First"
+                onClicked: {
+                    if (myModel.count > 0)
+                        myModel.setProperty(0, "value", 999)
+                }
+            }
+        }
     }
 
     // --- MAIN AREA ---
@@ -56,7 +87,6 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         color: "#eceff1"
 
-        // ***** LIST VIEW اضافه شد *****
         ListView {
             id: listView
             anchors.fill: parent
