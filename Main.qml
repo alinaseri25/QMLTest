@@ -53,27 +53,19 @@ ApplicationWindow {
             TestButton {
                 width: 120
                 text: "Add Item"
-                onClicked: {
-                    myModel.append({ "title": "New Item", "value": Math.random() * 100 })
-                }
+                onClicked: listModel.addItem("New Item", Math.random() * 100)
             }
 
             TestButton {
                 width: 120
                 text: "Remove First"
-                onClicked: {
-                    if (myModel.count > 0)
-                        myModel.remove(0)
-                }
+                onClicked: listModel.removeFirst()
             }
 
             TestButton {
                 width: 120
                 text: "Edit First"
-                onClicked: {
-                    if (myModel.count > 0)
-                        myModel.setProperty(0, "value", 999)
-                }
+                onClicked: listModel.editFirst(999)
             }
         }
     }
@@ -92,12 +84,7 @@ ApplicationWindow {
             anchors.fill: parent
             anchors.margins: 8
 
-            model: ListModel {
-                id: myModel
-                ListElement { title: "Item 1"; value: 10 }
-                ListElement { title: "Item 2"; value: 20 }
-                ListElement { title: "Item 3"; value: 30 }
-            }
+            model: listModel
 
             delegate: Rectangle {
                 width: listView.width

@@ -3,6 +3,7 @@
 #include <QQmlContext>
 
 #include <mybackend.h>
+#include <mylistmodel.h>
 
 int main(int argc, char *argv[])
 {
@@ -11,8 +12,10 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     MyBackend *backend =  new MyBackend(NULL);
-    // expose backend to QML
     engine.rootContext()->setContextProperty("backend", backend);
+
+    MyListModel *listModel = new MyListModel(NULL);
+    engine.rootContext()->setContextProperty("listModel", listModel);
 
     QObject::connect(
         &engine,
