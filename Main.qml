@@ -51,5 +51,16 @@ ApplicationWindow {
             anchors.centerIn: parent
             font.pixelSize: 24
         }
+
+        TestButton {
+            id: btn1
+            anchors.centerIn: parent
+            text: "Click Me!"
+            bgColor: "#1976d2"
+            bgPressed: "#1565c0"
+            onClicked: {
+                console.log("ButtonAli Clicked!")
+            }
+        }
     }
 }
