@@ -10,7 +10,7 @@ Rectangle {
     // رنگ‌ها و propertyهای قابل تنظیم
     property color bgColor: "#4caf50"
     property color bgPressed: "#43a047"
-    property string text: "ButtonAli"
+    property string text: "Button"
     property color textColor: "white"
 
     color: bgColor

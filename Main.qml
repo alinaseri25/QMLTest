@@ -31,8 +31,8 @@ ApplicationWindow {
             anchors.centerIn: parent
 
             onClicked: {
-                console.log("ButtonAli Clicked from HEADER!")
-                backend.doSomethingFromQml("سلام علی!");
+                console.log("Button Clicked from HEADER!")
+                backend.doSomethingFromQml("Hello World!");
             }
         }
     }
