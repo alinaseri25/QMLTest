@@ -12,14 +12,14 @@ Rectangle {
     property color bgPressed: "#43a047"
     property string text: "Button"
     property color textColor: "white"
-
+    property font userFont
     color: bgColor
 
     Text {
         anchors.centerIn: parent
         text: root.text
         color: root.textColor
-        font.pixelSize: 16
+        font: root.userFont
     }
 
     MouseArea {

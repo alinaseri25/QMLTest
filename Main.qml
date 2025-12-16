@@ -52,18 +52,21 @@ ApplicationWindow {
 
             TestButton {
                 width: 120
+                userFont.pixelSize: 16
                 text: "Add Item"
                 onClicked: listModel.addItem("New Item", Math.random() * 100)
             }
 
             TestButton {
                 width: 120
+                userFont.pixelSize: 14
                 text: "Remove First"
                 onClicked: listModel.removeFirst()
             }
 
             TestButton {
                 width: 120
+                userFont.pixelSize: 18
                 text: "Edit First"
                 onClicked: listModel.editFirst(999)
             }
