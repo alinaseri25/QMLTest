@@ -32,7 +32,7 @@ ApplicationWindow {
 
             onClicked: {
                 console.log("Button Clicked from HEADER!")
-                backend.doSomethingFromQml("Hello World!");
+                text: backend.doSomethingFromQml("Hello World!");
             }
         }
     }

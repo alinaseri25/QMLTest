@@ -14,7 +14,7 @@ signals:
     void valueChanged(int newValue);
 
 public slots:
-    void doSomethingFromQml(const QString &msg);
+    QString doSomethingFromQml(const QString &msg);
 };
 
 #endif // MYBACKEND_H
