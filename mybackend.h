@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QDebug>
+#include <QTimer>
 
 class MyBackend : public QObject
 {
@@ -10,11 +11,19 @@ class MyBackend : public QObject
 public:
     explicit MyBackend(QObject *parent = nullptr);
 
+private:
+    QTimer *timer;
+    qint64 timerCounter;
+
+private slots:
+    void onTimerTimeout(void);
+
 signals:
     void valueChanged(int newValue);
+    void changeButtonText(QString data);
 
 public slots:
-    QString doSomethingFromQml(const QString &msg);
+    void doSomethingFromQml(const QString &msg);
 };
 
 #endif // MYBACKEND_H

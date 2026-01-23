@@ -7,12 +7,7 @@ ApplicationWindow {
     visible: true
     title: "Anchors Demo"
 
-    Connections {
-        target: backend
-        function onValueChanged(newValue) {
-            console.log("Signal from C++ newValue =", newValue)
-        }
-    }
+    signal buttonPressed(string data);
 
     // --- HEADER ---
     Rectangle {
@@ -31,8 +26,8 @@ ApplicationWindow {
             anchors.centerIn: parent
 
             onClicked: {
-                console.log("Button Clicked from HEADER!")
-                text: backend.doSomethingFromQml("Hello World!");
+                //console.log("Button Clicked from HEADER!")
+                buttonPressed("Hello World by BtnHeader")
             }
         }
     }
@@ -104,6 +99,21 @@ ApplicationWindow {
                     Text { text: value; font.pixelSize: 16; color: "#666" }
                 }
             }
+        }
+    }
+
+    Component.onCompleted: {
+        buttonPressed.connect(backend.doSomethingFromQml)
+    }
+
+    Connections {
+        target: backend
+        function onValueChanged(newValue) {
+            console.log("Signal from C++ newValue =", newValue)
+        }
+
+        function onChangeButtonText(data){
+            btnHeader.text = data
         }
     }
 }

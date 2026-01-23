@@ -2,14 +2,23 @@
 
 MyBackend::MyBackend(QObject *parent)
     : QObject{parent}
-{}
+{
+    timerCounter = 0;
 
-QString MyBackend::doSomethingFromQml(const QString &msg)
+    timer = new QTimer(this);
+    connect(timer,&QTimer::timeout,this,&MyBackend::onTimerTimeout);
+    timer->start(1000);
+}
+
+void MyBackend::onTimerTimeout()
+{
+    emit valueChanged(timerCounter);
+    timerCounter++;
+}
+
+void MyBackend::doSomethingFromQml(const QString &msg)
 {
     qDebug() << "Called from QML:" << msg;
 
-    // فقط برای تست—هر مقدار دلخواه می‌تونه باشه
-    emit valueChanged(msg.length());
-
-    return QString("Hello");
+    emit changeButtonText(QString("Hello at %1").arg(timerCounter));
 }

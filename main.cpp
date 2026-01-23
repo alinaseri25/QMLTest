@@ -9,12 +9,13 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
+    MyBackend *backend =  new MyBackend(nullptr);
+    MyListModel *listModel = new MyListModel(nullptr);
+
     QQmlApplicationEngine engine;
 
-    MyBackend *backend =  new MyBackend(NULL);
     engine.rootContext()->setContextProperty("backend", backend);
 
-    MyListModel *listModel = new MyListModel(NULL);
     engine.rootContext()->setContextProperty("listModel", listModel);
 
     QObject::connect(
